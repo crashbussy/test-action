@@ -1,0 +1,25 @@
+name: Hello World Workflow
+
+on:
+  push:
+    branches:
+      - main
+  issue_comment:
+    types: [created]
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Say Hello
+        run: |
+          echo "Hello from GitHub Actions!"
+          echo "You pushed a commit or left a comment!"
+
+      - name: Reply to comment (if any)
+        if: github.event_name == 'issue_comment'
+        run: |
+          echo "Someone commented on an issue or PR!"
