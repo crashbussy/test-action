@@ -9,7 +9,11 @@ jobs:
     if: contains(github.event.comment.body, '/hello')
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Reply with message
         uses: peter-evans/create-or-update-comment@v2
         with:
+          issue-number: ${{ github.issue.number }}
           body: '👋 Hello! I am a bot powered by GitHub Actions!'
